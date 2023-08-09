@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://ff0dt1gfbfjo"]
+[gd_scene load_steps=18 format=3 uid="uid://ff0dt1gfbfjo"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_82t4u"]
 [ext_resource type="Texture2D" uid="uid://pjj2doemt7dx" path="res://assets/hero.png" id="2_oclvf"]
+[ext_resource type="AudioStream" uid="uid://buc15dfwstuoa" path="res://assets/steps.wav" id="3_781rm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkr5w"]
 atlas = ExtResource("2_oclvf")
@@ -149,3 +150,9 @@ shape = SubResource("CapsuleShape2D_4cs6j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="StepsPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_781rm")

@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 
-@export var speed := 100
+@export var speed := 80
 @export var health := 1
 
 
@@ -28,10 +28,14 @@ func go_up() -> void:
 
 
 func move() -> void:
+	if not $StepsPlayer.playing:
+		$StepsPlayer.play()
 	move_and_slide()
 
 
 func stay() -> void:
+	if $StepsPlayer.playing:
+		$StepsPlayer.stop()
 	match $AnimatedSprite2D.animation:
 		"go_right":
 			$AnimatedSprite2D.play("stay_right")

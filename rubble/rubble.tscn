@@ -70,7 +70,7 @@ offset_right = 70.0
 offset_bottom = -51.0
 
 [node name="Timer" type="Timer" parent="." index="6"]
-wait_time = 4.0
+wait_time = 5.0
 autostart = true
 
 [node name="ScreamPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
