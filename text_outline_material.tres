@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bmsyd3vp3meu5"]
+
+[ext_resource type="Shader" path="res://text_outline.gdshader" id="1_u1i5j"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_u1i5j")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = true

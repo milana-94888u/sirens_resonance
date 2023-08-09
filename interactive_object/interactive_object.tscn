@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://de2586udq4og4"]
+
+[ext_resource type="Script" path="res://interactive_object/interactive_object.gd" id="1_8fqyr"]
+[ext_resource type="Material" uid="uid://cowge51t64rvq" path="res://outline_material.tres" id="2_jbdcw"]
+[ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="3_hoyuc"]
+
+[node name="InteractiveObject" type="Area2D"]
+script = ExtResource("1_8fqyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_jbdcw")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+material = ExtResource("3_hoyuc")
+offset_left = -70.0
+offset_top = -11.0
+offset_right = 70.0
+offset_bottom = 15.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Press E to interact"

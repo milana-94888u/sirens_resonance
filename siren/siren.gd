@@ -3,13 +3,12 @@ class_name Siren
 
 
 func set_outline(enabled: bool) -> void:
+	$Label.visible = enabled
 	($Sprite2D.material as ShaderMaterial).set_shader_parameter("enabled", enabled)
 	
 
 func interact() -> void:
-	($Sprite2D.material as ShaderMaterial).set_shader_parameter(
-		"modulating", not ($Sprite2D.material as ShaderMaterial).get_shader_parameter("modulating")
-	)
+	$AudioStreamPlayer2D.play()
 
 
 func _on_body_entered(body: Node2D) -> void:

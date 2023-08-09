@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1o0l21xl7b1j"
-path="res://.godot/imported/autotile_tileset.png-d6019cc2605be581993a41db31c2b215.ctex"
+uid="uid://d0s2f6x8rgpar"
+path="res://.godot/imported/завалы.png-77d368b4cb993331244c25454a781b3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/autotile_tileset.png"
-dest_files=["res://.godot/imported/autotile_tileset.png-d6019cc2605be581993a41db31c2b215.ctex"]
+source_file="res://assets/завалы.png"
+dest_files=["res://.godot/imported/завалы.png-77d368b4cb993331244c25454a781b3b.ctex"]
 
 [params]
 
