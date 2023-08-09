@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvlp5j4q3lj8j"]
+
+[ext_resource type="Texture2D" uid="uid://b6ih5kntlmk36" path="res://assets/siren.png" id="1_aolti"]
+[ext_resource type="Script" path="res://siren/siren.gd" id="1_dvj2t"]
+[ext_resource type="Material" uid="uid://cowge51t64rvq" path="res://outline_material.tres" id="2_cc4ss"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4moye"]
+radius = 17.0
+height = 102.0
+
+[node name="Siren" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_dvj2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_cc4ss")
+texture = ExtResource("1_aolti")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 48)
+shape = SubResource("CapsuleShape2D_4moye")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
