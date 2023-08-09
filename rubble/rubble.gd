@@ -11,6 +11,7 @@ var base_texture: Texture
 
 
 func _ready() -> void:
+	super()
 	if rubble_sprite == 1:
 		$StaticBody2D/CollisionShape1.disabled = false
 	elif rubble_sprite == 2:
@@ -31,6 +32,7 @@ func interact() -> void:
 		$ActiveSprite.texture = $SecondSprite.texture
 		remove_child($SecondSprite)
 	elif has_node("ActiveSprite"):
+		$InjuredPerson.start_interacting()
 		stop_interacting()
 		remove_child($ActiveSprite)
 		remove_child($Timer)

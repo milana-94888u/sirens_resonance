@@ -5,6 +5,10 @@ class_name InteractiveObject
 @export var interactable := true
 
 
+func _ready() -> void:
+	add_to_group("interactive")
+
+
 func set_active(active: bool) -> void:
 	if not interactable:
 		return
@@ -24,10 +28,10 @@ func stop_interacting() -> void:
 
 
 func start_interacting() -> void:
+	interactable = true
 	for body in get_overlapping_bodies():
 		if body is Player:
 			body.set_active_object(self)
-	interactable = true
 
 
 func is_interactable() -> bool:

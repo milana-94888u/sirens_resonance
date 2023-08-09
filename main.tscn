@@ -592,5 +592,5 @@ position = Vector2(521, -80)
 position = Vector2(20, 42)
 rubble_sprite = 1
 
-[node name="Siren" parent="." instance=ExtResource("3_n4edb")]
+[node name="Siren" parent="." groups=["aaa"] instance=ExtResource("3_n4edb")]
 position = Vector2(405, 198)
