@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=9 format=3 uid="uid://kxfij6dpnu2e"]
 
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
 [ext_resource type="Texture2D" uid="uid://b4ompak233mag" path="res://assets/road.png" id="3_4okaf"]
 [ext_resource type="PackedScene" uid="uid://dg5fr4gqkerdq" path="res://siren/siren.tscn" id="3_n4edb"]
 [ext_resource type="PackedScene" uid="uid://ff0dt1gfbfjo" path="res://player/player.tscn" id="4_jt8bb"]
+[ext_resource type="PackedScene" uid="uid://cs4ewrtd5l0ij" path="res://rubble/rubble.tscn" id="5_xe1dv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_toljs"]
 texture = ExtResource("3_4okaf")
@@ -585,3 +586,6 @@ position = Vector2(577, 215)
 
 [node name="Siren" parent="." instance=ExtResource("3_n4edb")]
 position = Vector2(501, 212)
+
+[node name="Rubble" parent="." instance=ExtResource("5_xe1dv")]
+position = Vector2(245, 68)

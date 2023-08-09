@@ -46,7 +46,6 @@ position = Vector2(6, -45)
 shape = SubResource("CapsuleShape2D_o5mdd")
 
 [node name="InteractLabel" parent="." index="2"]
-visible = false
 material = SubResource("ShaderMaterial_4kdfy")
 offset_left = -63.0
 offset_top = -116.0

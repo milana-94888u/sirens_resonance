@@ -14,6 +14,7 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="InteractLabel" type="Label" parent="."]
+visible = false
 texture_filter = 1
 material = ExtResource("3_hoyuc")
 offset_right = 140.0

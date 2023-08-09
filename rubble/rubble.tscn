@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs4ewrtd5l0ij"]
+
+[ext_resource type="PackedScene" uid="uid://de2586udq4og4" path="res://interactive_object/interactive_object.tscn" id="1_m2hgq"]
+[ext_resource type="Script" path="res://rubble/rubble.gd" id="2_h0wkx"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="2_loc4r"]
+[ext_resource type="Shader" path="res://text_outline.gdshader" id="3_baayn"]
+[ext_resource type="Texture2D" uid="uid://csfpw3j2ha7si" path="res://assets/rubble/rubble1_second_block.png" id="4_dm3s5"]
+[ext_resource type="Texture2D" uid="uid://ftc4n68dcfba" path="res://assets/rubble/rubble1_base.png" id="5_73iji"]
+[ext_resource type="Texture2D" uid="uid://cy44n0u76amgf" path="res://assets/rubble/rubble1_first_block.png" id="6_fihoy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttpex"]
+resource_local_to_scene = true
+shader = ExtResource("2_loc4r")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0k2o"]
+size = Vector2(106, 87)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_on180"]
+resource_local_to_scene = true
+shader = ExtResource("3_baayn")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = true
+
+[node name="Rubble" instance=ExtResource("1_m2hgq")]
+script = ExtResource("2_h0wkx")
+
+[node name="BaseSprite" type="Sprite2D" parent="." index="0"]
+position = Vector2(-48, -64)
+texture = ExtResource("5_73iji")
+centered = false
+
+[node name="SecondSprite" type="Sprite2D" parent="." index="1"]
+position = Vector2(-48, -64)
+texture = ExtResource("4_dm3s5")
+centered = false
+
+[node name="ActiveSprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_ttpex")
+position = Vector2(-48, -64)
+texture = ExtResource("6_fihoy")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(1, -23)
+shape = SubResource("RectangleShape2D_a0k2o")
+
+[node name="InteractLabel" parent="." index="4"]
+material = SubResource("ShaderMaterial_on180")
+offset_left = -70.0
+offset_top = -77.0
+offset_right = 70.0
+offset_bottom = -51.0
