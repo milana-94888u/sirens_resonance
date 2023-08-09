@@ -7,13 +7,17 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = -98
+y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_82t4u")
 
 [node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
 texture = ExtResource("1_vepyp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_5uh8u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
