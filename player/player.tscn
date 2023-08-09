@@ -7,7 +7,6 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D"]
-z_index = -98
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_82t4u")
 

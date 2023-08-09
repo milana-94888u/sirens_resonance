@@ -6,7 +6,7 @@ class_name Player
 @export var health := 1
 
 
-var current_interact_object: Siren = null
+var current_interact_object: InteractiveObject = null
 
 
 func go_right() -> void:
@@ -45,15 +45,15 @@ func _physics_process(_delta: float) -> void:
 			current_interact_object.interact()
 
 
-func set_active_object(obj: Siren) -> void:
+func set_active_object(obj: InteractiveObject) -> void:
 	if current_interact_object != null and current_interact_object != obj:
-		current_interact_object.set_outline(false)
+		current_interact_object.set_active(false)
 	current_interact_object = obj
-	current_interact_object.set_outline(true)
+	current_interact_object.set_active(true)
 
 
-func remove_active_object(obj: Siren) -> void:
+func remove_active_object(obj: InteractiveObject) -> void:
 	if current_interact_object == obj:
-		current_interact_object.set_outline(false)
+		current_interact_object.set_active(false)
 		current_interact_object = null
-	get_tree().call_group("sirens", "check_for_player", self)
+	get_tree().call_group("interactive", "check_for_player", self)

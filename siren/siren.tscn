@@ -1,50 +1,64 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvlp5j4q3lj8j"]
+[gd_scene load_steps=11 format=3 uid="uid://dg5fr4gqkerdq"]
 
 [ext_resource type="Texture2D" uid="uid://b6ih5kntlmk36" path="res://assets/siren.png" id="1_aolti"]
 [ext_resource type="Script" path="res://siren/siren.gd" id="1_dvj2t"]
-[ext_resource type="Material" uid="uid://cowge51t64rvq" path="res://outline_material.tres" id="2_cc4ss"]
+[ext_resource type="PackedScene" uid="uid://de2586udq4og4" path="res://interactive_object/interactive_object.tscn" id="1_rvtyu"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="2_dvlmb"]
+[ext_resource type="Shader" path="res://text_outline.gdshader" id="3_j7v0l"]
 [ext_resource type="AudioStream" uid="uid://bqj88aca0vvlp" path="res://assets/siren.mp3" id="4_cdxb7"]
-[ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="5_hbus8"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4moye"]
-radius = 21.0
-height = 102.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6cas"]
+resource_local_to_scene = true
+shader = ExtResource("2_dvlmb")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = false
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2e2db"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5mdd"]
+radius = 20.0
+height = 100.0
 
-[node name="Siren" type="Area2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kdfy"]
+resource_local_to_scene = true
+shader = ExtResource("3_j7v0l")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oejxp"]
+
+[node name="Siren" instance=ExtResource("1_rvtyu")]
 script = ExtResource("1_dvj2t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_cc4ss")
-position = Vector2(-8, -93)
+[node name="ActiveSprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_b6cas")
 texture = ExtResource("1_aolti")
-centered = false
+offset = Vector2(-8, -93)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(6, -45)
-shape = SubResource("CapsuleShape2D_4moye")
+shape = SubResource("CapsuleShape2D_o5mdd")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="InteractLabel" parent="." index="2"]
+visible = false
+material = SubResource("ShaderMaterial_4kdfy")
+offset_left = -63.0
+offset_top = -116.0
+offset_right = 77.0
+offset_bottom = -90.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
 position = Vector2(8, 3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2(-8, -17)
-shape = SubResource("CapsuleShape2D_2e2db")
+shape = SubResource("CapsuleShape2D_oejxp")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
 stream = ExtResource("4_cdxb7")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-texture_filter = 1
-material = ExtResource("5_hbus8")
-offset_left = -70.0
-offset_top = -123.0
-offset_right = 70.0
-offset_bottom = -97.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Press E to interact"
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
