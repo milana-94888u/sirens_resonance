@@ -30,6 +30,10 @@ func start_interacting() -> void:
 	interactable = true
 
 
+func is_interactable() -> bool:
+	return is_interactable()
+
+
 func check_for_player(player: Player) -> void:
 	if player.current_interact_object != null:
 		return
