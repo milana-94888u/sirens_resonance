@@ -20,6 +20,7 @@ material = ExtResource("3_hoyuc")
 offset_right = 140.0
 offset_bottom = 26.0
 text = "Press E to interact"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

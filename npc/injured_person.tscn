@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bay45oka0lfct"]
+[gd_scene load_steps=15 format=3 uid="uid://bay45oka0lfct"]
 
 [ext_resource type="PackedScene" uid="uid://de2586udq4og4" path="res://interactive_object/interactive_object.tscn" id="1_rix7e"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="2_0cnsa"]
+[ext_resource type="Script" path="res://npc/injured_person.gd" id="2_0s4eu"]
 [ext_resource type="Texture2D" uid="uid://cgr51ax71j2hk" path="res://assets/npc/injured civilian 1.png" id="3_1o300"]
 [ext_resource type="Shader" path="res://text_outline.gdshader" id="4_5f435"]
 
@@ -28,7 +29,107 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 shader_parameter/enabled = true
 
+[sub_resource type="Gradient" id="Gradient_26nji"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.696774)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x3uu1"]
+gradient = SubResource("Gradient_26nji")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_aemw0"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(25, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g21m1"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(25, 25), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5j3ro"]
+resource_name = "fade_full"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(25, 25), Vector2(25, 25), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xext4"]
+_data = {
+"fade_full": SubResource("Animation_5j3ro"),
+"fade_in": SubResource("Animation_g21m1"),
+"fade_out": SubResource("Animation_aemw0")
+}
+
 [node name="InjuredPerson" instance=ExtResource("1_rix7e")]
+script = ExtResource("2_0s4eu")
 interactable = false
 
 [node name="ActiveSprite" parent="." index="0"]
@@ -46,3 +147,30 @@ offset_left = -70.0
 offset_top = -61.0
 offset_right = 70.0
 offset_bottom = -35.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="0"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_x3uu1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" index="1"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_xext4")
+}
+
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
