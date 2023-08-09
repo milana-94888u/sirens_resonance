@@ -60,4 +60,5 @@ position = Vector2(-8, -17)
 shape = SubResource("CapsuleShape2D_oejxp")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+position = Vector2(14, -80)
 stream = ExtResource("4_cdxb7")

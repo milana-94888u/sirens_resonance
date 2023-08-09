@@ -1,22 +1,151 @@
-[gd_scene load_steps=4 format=3 uid="uid://ff0dt1gfbfjo"]
+[gd_scene load_steps=17 format=3 uid="uid://ff0dt1gfbfjo"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_82t4u"]
-[ext_resource type="Texture2D" uid="uid://bhtrohnmscuer" path="res://icon.svg" id="1_vepyp"]
+[ext_resource type="Texture2D" uid="uid://pjj2doemt7dx" path="res://assets/hero.png" id="2_oclvf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uh8u"]
-size = Vector2(128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkr5w"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naxtm"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_615am"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d31ku"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8ku1"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juln1"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrvh6"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lfng"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmitr"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re1dg"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75eam"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylaha"]
+atlas = ExtResource("2_oclvf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sc7lf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkr5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naxtm")
+}],
+"loop": true,
+"name": &"go_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_615am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d31ku")
+}],
+"loop": true,
+"name": &"go_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8ku1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juln1")
+}],
+"loop": true,
+"name": &"go_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrvh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lfng")
+}],
+"loop": true,
+"name": &"go_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmitr")
+}],
+"loop": true,
+"name": &"stay_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re1dg")
+}],
+"loop": true,
+"name": &"stay_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75eam")
+}],
+"loop": true,
+"name": &"stay_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylaha")
+}],
+"loop": true,
+"name": &"stay_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cs6j"]
+height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_82t4u")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-64, -128)
-texture = ExtResource("1_vepyp")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, -32)
+sprite_frames = SubResource("SpriteFrames_sc7lf")
+animation = &"stay_up"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
-shape = SubResource("RectangleShape2D_5uh8u")
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_4cs6j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

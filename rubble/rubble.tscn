@@ -74,6 +74,7 @@ wait_time = 4.0
 autostart = true
 
 [node name="ScreamPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
+position = Vector2(0, -9)
 stream = ExtResource("9_dn1u4")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
