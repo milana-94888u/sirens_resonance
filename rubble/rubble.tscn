@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cs4ewrtd5l0ij"]
+[gd_scene load_steps=14 format=3 uid="uid://cs4ewrtd5l0ij"]
 
 [ext_resource type="PackedScene" uid="uid://de2586udq4og4" path="res://interactive_object/interactive_object.tscn" id="1_m2hgq"]
 [ext_resource type="Script" path="res://rubble/rubble.gd" id="2_h0wkx"]
 [ext_resource type="Shader" path="res://outline.gdshader" id="2_loc4r"]
 [ext_resource type="Shader" path="res://text_outline.gdshader" id="3_baayn"]
+[ext_resource type="Texture2D" uid="uid://fohen0ykmpu3" path="res://assets/rubble/rubble2_base.png" id="3_f1vmx"]
 [ext_resource type="Texture2D" uid="uid://bgsfwjw6k3c3f" path="res://assets/rubble/rubble1_second_block.png" id="4_dm3s5"]
 [ext_resource type="Texture2D" uid="uid://cepaouqmgtbyr" path="res://assets/rubble/rubble1_sound.png" id="4_qryxm"]
-[ext_resource type="Texture2D" uid="uid://cgwq1svptyon6" path="res://assets/rubble/rubble1_base.png" id="5_73iji"]
 [ext_resource type="Texture2D" uid="uid://wh7do4toq75u" path="res://assets/rubble/rubble1_first_block.png" id="6_fihoy"]
 [ext_resource type="AudioStream" uid="uid://c158qitqppfk0" path="res://assets/wave.wav" id="9_u6e6u"]
 
@@ -33,13 +33,16 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 shader_parameter/enabled = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnueq"]
+size = Vector2(88, 42)
+
 [node name="Rubble" instance=ExtResource("1_m2hgq")]
 script = ExtResource("2_h0wkx")
 rubble_sprite = 2
 
 [node name="BaseSprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(-48, -64)
-texture = ExtResource("5_73iji")
+texture = ExtResource("3_f1vmx")
 centered = false
 
 [node name="SoundSprite" type="Sprite2D" parent="." index="1"]
@@ -77,6 +80,18 @@ autostart = true
 position = Vector2(0, -9)
 stream = ExtResource("9_u6e6u")
 volume_db = -15.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+
+[node name="CollisionShape1" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(-1, -16)
+shape = SubResource("RectangleShape2D_gnueq")
+disabled = true
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_gnueq")
+disabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="ScreamPlayer" to="." method="_on_scream_player_finished"]

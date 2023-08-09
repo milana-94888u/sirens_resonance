@@ -11,6 +11,10 @@ var base_texture: Texture
 
 
 func _ready() -> void:
+	if rubble_sprite == 1:
+		$StaticBody2D/CollisionShape1.disabled = false
+	elif rubble_sprite == 2:
+		$StaticBody2D/CollisionShape2.disabled = false
 	first_block_texture = load("res://assets/rubble/rubble%d_first_block.png" % rubble_sprite)
 	second_block_texture = load("res://assets/rubble/rubble%d_second_block.png" % rubble_sprite)
 	sound_texture = load("res://assets/rubble/rubble%d_sound.png" % rubble_sprite)
