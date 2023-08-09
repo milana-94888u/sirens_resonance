@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cepaouqmgtbyr" path="res://assets/rubble/rubble1_sound.png" id="4_qryxm"]
 [ext_resource type="Texture2D" uid="uid://cgwq1svptyon6" path="res://assets/rubble/rubble1_base.png" id="5_73iji"]
 [ext_resource type="Texture2D" uid="uid://wh7do4toq75u" path="res://assets/rubble/rubble1_first_block.png" id="6_fihoy"]
-[ext_resource type="AudioStream" uid="uid://bqj88aca0vvlp" path="res://assets/siren.mp3" id="9_dn1u4"]
+[ext_resource type="AudioStream" uid="uid://c158qitqppfk0" path="res://assets/wave.wav" id="9_u6e6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttpex"]
 resource_local_to_scene = true
@@ -75,7 +75,8 @@ autostart = true
 
 [node name="ScreamPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
 position = Vector2(0, -9)
-stream = ExtResource("9_dn1u4")
+stream = ExtResource("9_u6e6u")
+volume_db = -15.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="ScreamPlayer" to="." method="_on_scream_player_finished"]
