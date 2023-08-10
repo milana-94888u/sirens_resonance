@@ -3178,7 +3178,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.6, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(25, 25), Vector2(25, 25), Vector2(0.1, 0.1)]
+"values": [Vector2(0.1, 0.1), Vector2(50, 50), Vector2(50, 50), Vector2(0.1, 0.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3205,7 +3205,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(25, 25), Vector2(0.1, 0.1)]
+"values": [Vector2(50, 50), Vector2(0.1, 0.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3232,7 +3232,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(25, 25)]
+"values": [Vector2(0.1, 0.1), Vector2(50, 50)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3465,8 +3465,41 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Play again"
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="ReplayButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 100.0
 one_shot = true
 autostart = true
 
@@ -3486,4 +3519,6 @@ stream = ExtResource("11_ruhjx")
 [connection signal="injured_person_saved" from="InjuredPerson2" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="InjuredPerson3" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="InjuredPerson4" to="." method="_on_injured_person_saved"]
+[connection signal="pressed" from="CanvasLayer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

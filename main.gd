@@ -138,6 +138,14 @@ func _on_timer_timeout() -> void:
 		$CanvasLayer/WinLabel.text = "There was the second tremor\nYou failed to save anyone"
 	$CanvasLayer/WinLabel.visible = true
 	$CanvasLayer/ReplayButton.visible = true
+	
+	for child in get_children():
+		if child is InteractiveObject:
+			remove_child(child)
 
 	await $EarthQuakePlayer.finished
 	$CanvasLayer/AnimationPlayer.play("fade_in")
+
+
+func _on_replay_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://intro/intro.tscn")

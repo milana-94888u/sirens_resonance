@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cltgujnne0yd7"]
 
-[ext_resource type="Texture2D" uid="uid://cj0b1lv17xfe6" path="res://assets/intro_items/audio_device.png" id="1_bfpb4"]
+[ext_resource type="Texture2D" uid="uid://teqdgrq8f6b7" path="res://assets/intro_items/audio_device1.png" id="1_e1xjs"]
 
 [node name="Intro" type="Control"]
 layout_mode = 3
@@ -10,10 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 52.0
-offset_right = 254.0
-offset_bottom = 180.0
-texture = ExtResource("1_bfpb4")
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_e1xjs")
