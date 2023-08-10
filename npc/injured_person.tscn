@@ -40,8 +40,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
-[sub_resource type="Animation" id="Animation_aemw0"]
-resource_name = "fade_out"
+[sub_resource type="Animation" id="Animation_5j3ro"]
+resource_name = "fade_full"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,10 +49,10 @@ tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(25, 25)]
+"values": [Vector2(0.1, 0.1), Vector2(25, 25), Vector2(25, 25), Vector2(0.1, 0.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,10 +61,10 @@ tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_g21m1"]
@@ -94,8 +94,8 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_5j3ro"]
-resource_name = "fade_full"
+[sub_resource type="Animation" id="Animation_aemw0"]
+resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,10 +103,10 @@ tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(25, 25), Vector2(25, 25), Vector2(0.1, 0.1)]
+"values": [Vector2(0.1, 0.1), Vector2(25, 25)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -115,10 +115,10 @@ tracks/1/path = NodePath("CanvasLayer/TextureRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xext4"]
