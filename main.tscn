@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=24 format=3 uid="uid://kxfij6dpnu2e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
@@ -3254,6 +3254,12 @@ _data = {
 "fade_out": SubResource("Animation_aemw0")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcinj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -3407,18 +3413,21 @@ offset_bottom = 71.0
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Remaining time 0:00"
 
 [node name="SavedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Rescued people: 0/10"
 
 [node name="NotifiedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Notified people: 0/10"
 
 [node name="WinLabel" type="Label" parent="CanvasLayer"]
@@ -3461,7 +3470,7 @@ wait_time = 120.0
 one_shot = true
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="EarthQuakePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ruhjx")
 
 [connection signal="injured_person_saved" from="Rubble" to="." method="_on_injured_person_saved"]

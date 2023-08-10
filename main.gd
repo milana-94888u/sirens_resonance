@@ -124,7 +124,7 @@ func _on_timer_timeout() -> void:
 	player_blocked = true
 	$Player.set_physics_process(false)
 	await $CanvasLayer/AnimationPlayer.animation_finished
-	$AudioStreamPlayer.play()
+	$EarthQuakePlayer.play()
 	
 	$Player/AnimatedSprite2D.play("stay_down")
 	$Player/StepsPlayer.stop()
@@ -139,5 +139,5 @@ func _on_timer_timeout() -> void:
 	$CanvasLayer/WinLabel.visible = true
 	$CanvasLayer/ReplayButton.visible = true
 
-	await $AudioStreamPlayer.finished
+	await $EarthQuakePlayer.finished
 	$CanvasLayer/AnimationPlayer.play("fade_in")
