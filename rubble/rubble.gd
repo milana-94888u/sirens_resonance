@@ -32,9 +32,11 @@ func _ready() -> void:
 
 func interact() -> void:
 	if has_node("SecondSprite"):
+		$ClearPlayer.play()
 		$ActiveSprite.texture = $SecondSprite.texture
 		remove_child($SecondSprite)
 	elif has_node("ActiveSprite"):
+		$ClearPlayer.play()
 		$InjuredPerson.start_interacting()
 		stop_interacting()
 		remove_child($ActiveSprite)

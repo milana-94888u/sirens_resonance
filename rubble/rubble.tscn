@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs4ewrtd5l0ij"]
+[gd_scene load_steps=16 format=3 uid="uid://cs4ewrtd5l0ij"]
 
 [ext_resource type="PackedScene" uid="uid://de2586udq4og4" path="res://interactive_object/interactive_object.tscn" id="1_m2hgq"]
 [ext_resource type="Script" path="res://rubble/rubble.gd" id="2_h0wkx"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cgwq1svptyon6" path="res://assets/rubble/rubble1_base.png" id="5_73iji"]
 [ext_resource type="Texture2D" uid="uid://wh7do4toq75u" path="res://assets/rubble/rubble1_first_block.png" id="6_fihoy"]
 [ext_resource type="AudioStream" uid="uid://c158qitqppfk0" path="res://assets/wave.wav" id="9_u6e6u"]
+[ext_resource type="AudioStream" uid="uid://cdujkkhjox7ro" path="res://assets/rubble_clear.mp3" id="11_atd1a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttpex"]
 resource_local_to_scene = true
@@ -85,7 +86,10 @@ position = Vector2(0, -9)
 stream = ExtResource("9_u6e6u")
 volume_db = -15.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+[node name="ClearPlayer" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("11_atd1a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="10"]
 
 [node name="CollisionShape1" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 position = Vector2(-1, -16)
