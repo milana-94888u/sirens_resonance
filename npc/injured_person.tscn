@@ -29,13 +29,13 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 shader_parameter/enabled = true
 
-[sub_resource type="Gradient" id="Gradient_26nji"]
+[sub_resource type="Gradient" id="Gradient_3gve3"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.696774)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x3uu1"]
-gradient = SubResource("Gradient_26nji")
+gradient = SubResource("Gradient_3gve3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
