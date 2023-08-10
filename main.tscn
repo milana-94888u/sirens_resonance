@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://vohu4idwogas"]
+[gd_scene load_steps=25 format=3 uid="uid://vohu4idwogas"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bay45oka0lfct" path="res://npc/injured_person.tscn" id="8_1351i"]
 [ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="10_u2aa8"]
 [ext_resource type="AudioStream" uid="uid://b0c387whcm2tk" path="res://assets/earthquake.mp3" id="11_ruhjx"]
+[ext_resource type="AudioStream" uid="uid://cwhm2hgljjrqu" path="res://assets/soundtrack.mp3" id="12_iiw7m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_toljs"]
 texture = ExtResource("3_4okaf")
@@ -3413,6 +3414,7 @@ offset_bottom = 71.0
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Remaining time 0:00"
 
@@ -3420,6 +3422,7 @@ text = "Remaining time 0:00"
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Rescued people: 0/10"
 
@@ -3427,6 +3430,7 @@ text = "Rescued people: 0/10"
 texture_filter = 1
 material = ExtResource("10_u2aa8")
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gcinj")
 text = "Notified people: 0/10"
 
@@ -3465,7 +3469,26 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Play again"
 
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 180.0
+offset_right = 120.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -3498,6 +3521,13 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Restart"
 
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 100.0
 one_shot = true
@@ -3505,6 +3535,11 @@ autostart = true
 
 [node name="EarthQuakePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ruhjx")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_iiw7m")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="injured_person_saved" from="Rubble" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="Rubble3" to="." method="_on_injured_person_saved"]
@@ -3520,5 +3555,8 @@ stream = ExtResource("11_ruhjx")
 [connection signal="injured_person_saved" from="InjuredPerson3" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="InjuredPerson4" to="." method="_on_injured_person_saved"]
 [connection signal="pressed" from="CanvasLayer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

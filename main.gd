@@ -138,6 +138,7 @@ func _on_timer_timeout() -> void:
 		$CanvasLayer/WinLabel.text = "There was the second tremor\nYou failed to save anyone"
 	$CanvasLayer/WinLabel.visible = true
 	$CanvasLayer/ReplayButton.visible = true
+	$CanvasLayer/QuitButton.visible = true
 	
 	for child in get_children():
 		if child is InteractiveObject:
@@ -147,5 +148,42 @@ func _on_timer_timeout() -> void:
 	$CanvasLayer/AnimationPlayer.play("fade_in")
 
 
+func pause() -> void:
+	$CanvasLayer/PauseMenu.visible = true
+	$Timer.paused = true
+	$Player.set_physics_process(false)
+	$MusicPlayer.stream_paused = true
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+
+
+func resume() -> void:
+	$CanvasLayer/PauseMenu.visible = false
+	$Timer.paused = false
+	$Player.set_physics_process(true)
+	$MusicPlayer.stream_paused = false
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+
+
 func _on_replay_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://intro/intro.tscn")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_resume_button_pressed() -> void:
+	resume()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if $Timer.paused:
+			resume()
+		else:
+			pause()
+
+
+func _notification(what: int) -> void:
+	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_OUT:
+		pause()
