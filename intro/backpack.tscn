@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://6cu8i5mqwfw6"]
+
+[ext_resource type="Material" uid="uid://cowge51t64rvq" path="res://outline_material.tres" id="1_wvbvg"]
+[ext_resource type="Texture2D" uid="uid://uysjo0wls3ff" path="res://assets/intro_items/backpack_сlosed.png" id="2_pef4h"]
+[ext_resource type="AudioStream" uid="uid://beu68x44i8n5o" path="res://assets/intro_items/backpack_unzip.mp3" id="3_plc7n"]
+[ext_resource type="AudioStream" uid="uid://csnpnjn7kayny" path="res://assets/intro_items/backpack_put.mp3" id="4_qym1i"]
+[ext_resource type="AudioStream" uid="uid://c3yhmkp0mvlkh" path="res://assets/intro_items/backpack_zip.mp3" id="5_8n3gw"]
+
+[node name="Backpack" type="TextureButton"]
+material = ExtResource("1_wvbvg")
+offset_right = 640.0
+offset_bottom = 640.0
+disabled = true
+texture_normal = ExtResource("2_pef4h")
+stretch_mode = 0
+
+[node name="Unzip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_plc7n")
+
+[node name="Put" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qym1i")
+volume_db = 10.0
+
+[node name="Zip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8n3gw")

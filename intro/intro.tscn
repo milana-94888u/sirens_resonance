@@ -1,17 +1,214 @@
-[gd_scene load_steps=2 format=3 uid="uid://cltgujnne0yd7"]
+[gd_scene load_steps=15 format=3 uid="uid://cltgujnne0yd7"]
 
-[ext_resource type="Texture2D" uid="uid://teqdgrq8f6b7" path="res://assets/intro_items/audio_device1.png" id="1_e1xjs"]
+[ext_resource type="Texture2D" uid="uid://b8tmk11vsmti5" path="res://assets/intro_items/background.png" id="1_4qp7x"]
+[ext_resource type="Script" path="res://intro/intro.gd" id="1_gj6gj"]
+[ext_resource type="Material" uid="uid://cowge51t64rvq" path="res://outline_material.tres" id="2_54ftl"]
+[ext_resource type="PackedScene" uid="uid://dlhas1mab1bx5" path="res://intro/audio_device.tscn" id="3_g8hax"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="4_8rat5"]
+[ext_resource type="AudioStream" uid="uid://r4hxuihj7xmq" path="res://assets/radio_start.mp3" id="5_6bixv"]
+[ext_resource type="PackedScene" uid="uid://6cu8i5mqwfw6" path="res://intro/backpack.tscn" id="5_xcqf5"]
+[ext_resource type="Texture2D" uid="uid://dysqw8gn0cpvy" path="res://assets/intro_items/item1.png" id="6_43hmh"]
+[ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="6_oiea5"]
+[ext_resource type="Texture2D" uid="uid://ccu31wsw2jwnh" path="res://assets/intro_items/item2.png" id="8_bn6kp"]
+[ext_resource type="AudioStream" uid="uid://b0c387whcm2tk" path="res://assets/earthquake.mp3" id="8_ts5ku"]
+[ext_resource type="Texture2D" uid="uid://csqmiaol3fnfy" path="res://assets/intro_items/item3.png" id="9_4p22g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tve80"]
+resource_local_to_scene = true
+shader = ExtResource("4_8rat5")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ho5h"]
+resource_local_to_scene = true
+shader = ExtResource("4_8rat5")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 2.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = false
 
 [node name="Intro" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gj6gj")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("1_e1xjs")
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4qp7x")
+
+[node name="AudioDevice" parent="." instance=ExtResource("3_g8hax")]
+material = SubResource("ShaderMaterial_tve80")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -640.0
+offset_right = 160.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Backpack" parent="." instance=ExtResource("5_xcqf5")]
+material = SubResource("ShaderMaterial_5ho5h")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -640.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Items" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -320.0
+offset_right = 640.0
+grow_vertical = 0
+
+[node name="Item1" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+offset_right = 160.0
+offset_bottom = 160.0
+disabled = true
+texture_normal = ExtResource("6_43hmh")
+stretch_mode = 0
+
+[node name="Item2" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_right = 160.0
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("8_bn6kp")
+stretch_mode = 0
+
+[node name="Item3" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("9_4p22g")
+stretch_mode = 0
+
+[node name="Item4" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("6_43hmh")
+stretch_mode = 0
+
+[node name="Item5" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_bottom = 160.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("8_bn6kp")
+stretch_mode = 0
+
+[node name="Item6" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+offset_left = 160.0
+offset_right = 320.0
+offset_bottom = 160.0
+disabled = true
+texture_normal = ExtResource("6_43hmh")
+stretch_mode = 0
+
+[node name="Item7" type="TextureButton" parent="Items"]
+material = ExtResource("2_54ftl")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_right = -160.0
+offset_bottom = 160.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("8_bn6kp")
+stretch_mode = 0
+
+[node name="Captions" type="Label" parent="."]
+visible = false
+material = ExtResource("6_oiea5")
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -240.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Since the first wave of the earthquake, we are carring out the rescue operation.
+In case if you are find yourself under wreakage,
+ try to whistling and make sounds so we can find you."
+horizontal_alignment = 1
+
+[node name="RadioBroadcast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6bixv")
+
+[node name="EarthQuakePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ts5ku")
+autoplay = true
+
+[connection signal="pressed" from="AudioDevice" to="." method="_on_audio_device_pressed"]
+[connection signal="pressed" from="Backpack" to="." method="_on_backpack_pressed"]
+[connection signal="finished" from="RadioBroadcast" to="." method="_on_radio_broadcast_finished"]
+[connection signal="finished" from="EarthQuakePlayer" to="." method="_on_earth_quake_player_finished"]
