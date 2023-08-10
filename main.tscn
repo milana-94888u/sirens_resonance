@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=24 format=3 uid="uid://vohu4idwogas"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
