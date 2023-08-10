@@ -120,6 +120,7 @@ func _on_siren_played(siren: InteractiveObject) -> void:
 
 
 func _on_timer_timeout() -> void:
+	set_process_input(false)
 	$CanvasLayer/AnimationPlayer.play("fade_out")
 	player_blocked = true
 	$Player.set_physics_process(false)
@@ -149,6 +150,7 @@ func _on_timer_timeout() -> void:
 
 
 func pause() -> void:
+	player_blocked = true
 	$CanvasLayer/PauseMenu.visible = true
 	$Timer.paused = true
 	$Player.set_physics_process(false)
@@ -157,6 +159,7 @@ func pause() -> void:
 
 
 func resume() -> void:
+	player_blocked = false
 	$CanvasLayer/PauseMenu.visible = false
 	$Timer.paused = false
 	$Player.set_physics_process(true)
