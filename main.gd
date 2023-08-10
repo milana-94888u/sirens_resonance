@@ -127,3 +127,11 @@ func _on_timer_timeout() -> void:
 	$Player/StepsPlayer.stop()
 	$Player.position = Vector2(974, -260)
 	await $CanvasLayer/AnimationPlayer.animation_finished
+	if len(injured_people_camp_spots) == 0 and len(people_camp_spots) == 0:
+		$CanvasLayer/WinLabel.text = "There was the second tremor\nAll people are saved!"
+	elif len(injured_people_camp_spots) < 10 and len(people_camp_spots) < 10:
+		$CanvasLayer/WinLabel.text = "There was the second tremor\nYou saved some people"
+	else:
+		$CanvasLayer/WinLabel.text = "There was the second tremor\nYou failed to save anyone"
+	$CanvasLayer/WinLabel.visible = true
+	$CanvasLayer/ReplayButton.visible = true
