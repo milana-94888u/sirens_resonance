@@ -1,6 +1,9 @@
 extends InteractiveObject
 
 
+signal injured_person_saved(person: InteractiveObject)
+
+
 var dialogue_lines := ["You saved me!", "Thank you!"]
 
 
@@ -12,4 +15,4 @@ func interact() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_full":
-		queue_free()
+		injured_person_saved.emit(self)

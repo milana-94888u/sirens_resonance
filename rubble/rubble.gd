@@ -1,6 +1,9 @@
 extends InteractiveObject
 
 
+signal injured_person_saved(person: InteractiveObject)
+
+
 @export var rubble_sprite := 2
 
 
@@ -47,3 +50,7 @@ func _on_timer_timeout() -> void:
 
 func _on_scream_player_finished() -> void:
 	$SoundSprite.visible = false
+
+
+func _on_injured_person_injured_person_saved(person: InteractiveObject) -> void:
+	injured_person_saved.emit(person)

@@ -97,5 +97,6 @@ position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_gnueq")
 disabled = true
 
+[connection signal="injured_person_saved" from="InjuredPerson" to="." method="_on_injured_person_injured_person_saved"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="ScreamPlayer" to="." method="_on_scream_player_finished"]

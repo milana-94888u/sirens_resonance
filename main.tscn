@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=15 format=3 uid="uid://kxfij6dpnu2e"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
 [ext_resource type="Texture2D" uid="uid://b4ompak233mag" path="res://assets/road.png" id="3_4okaf"]
 [ext_resource type="PackedScene" uid="uid://dg5fr4gqkerdq" path="res://siren/siren.tscn" id="3_n4edb"]
@@ -3155,6 +3156,7 @@ sources/4 = SubResource("TileSetAtlasSource_k4l4g")
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
+script = ExtResource("1_l2lgw")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -3199,15 +3201,17 @@ layer_5/modulate = Color(1, 1, 1, 1)
 layer_5/y_sort_enabled = true
 layer_5/y_sort_origin = 0
 layer_5/z_index = -98
-layer_5/tile_data = PackedInt32Array(-327639, 262148, 2, -262103, 262148, 3, -327638, 327684, 2, -262102, 327684, 3, -327643, 262148, 2, -262107, 262148, 3, -327642, 327684, 2, -262106, 327684, 3, -655316, 262148, 2, -589780, 262148, 3, -655315, 327684, 2, -589779, 327684, 3, -458718, 262148, 2, -393182, 262148, 3, -458717, 327684, 2, -393181, 327684, 3, 196621, 458756, 4, -196590, 458756, 4)
+layer_5/tile_data = PackedInt32Array(-327639, 262148, 2, -262103, 262148, 3, -327638, 327684, 2, -262102, 327684, 3, -327643, 262148, 2, -262107, 262148, 3, -327642, 327684, 2, -262106, 327684, 3, -655316, 262148, 2, -589780, 262148, 3, -655315, 327684, 2, -589779, 327684, 3, -458718, 262148, 2, -393182, 262148, 3, -393181, 327684, 3, 196621, 458756, 4, -196590, 458756, 4, -458717, 327684, 2)
 
 [node name="Player" parent="." instance=ExtResource("4_jt8bb")]
 z_index = -98
 position = Vector2(1123, -220)
+speed = 200
 
 [node name="Rubble" parent="." instance=ExtResource("4_58fva")]
 z_index = -98
 position = Vector2(521, -80)
+rubble_sprite = 1
 
 [node name="Rubble3" parent="." instance=ExtResource("4_58fva")]
 z_index = -98
@@ -3219,6 +3223,7 @@ priority = 1245
 z_index = -98
 position = Vector2(591, 260)
 priority = 1245
+rubble_sprite = 1
 
 [node name="Rubble5" parent="." instance=ExtResource("4_58fva")]
 z_index = -98
@@ -3266,3 +3271,14 @@ interactable = true
 z_index = -98
 position = Vector2(157, 98)
 interactable = true
+
+[connection signal="injured_person_saved" from="Rubble" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="Rubble3" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="Rubble4" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="Rubble5" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="Rubble2" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="Rubble6" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="InjuredPerson" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="InjuredPerson2" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="InjuredPerson3" to="." method="_on_injured_person_saved"]
+[connection signal="injured_person_saved" from="InjuredPerson4" to="." method="_on_injured_person_saved"]
