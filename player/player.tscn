@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ff0dt1gfbfjo"]
+[gd_scene load_steps=20 format=3 uid="uid://ff0dt1gfbfjo"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_82t4u"]
 [ext_resource type="Texture2D" uid="uid://pjj2doemt7dx" path="res://assets/hero.png" id="2_oclvf"]
 [ext_resource type="AudioStream" uid="uid://buc15dfwstuoa" path="res://assets/steps.wav" id="3_781rm"]
+[ext_resource type="Shader" path="res://text_outline.gdshader" id="4_emrck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkr5w"]
 atlas = ExtResource("2_oclvf")
@@ -135,6 +136,16 @@ animations = [{
 radius = 7.0
 height = 18.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbq6x"]
+resource_local_to_scene = true
+shader = ExtResource("4_emrck")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/enabled = true
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_82t4u")
 
@@ -157,3 +168,26 @@ position = Vector2(0, -24)
 [node name="StepsPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_781rm")
 volume_db = -20.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CaptionsLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bbq6x")
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "
+"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

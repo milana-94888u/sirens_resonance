@@ -3304,8 +3304,8 @@ layer_5/tile_data = PackedInt32Array(-327639, 262148, 2, -262103, 262148, 3, -32
 
 [node name="Player" parent="." instance=ExtResource("4_jt8bb")]
 z_index = -98
-position = Vector2(976, 0)
-speed = 200
+position = Vector2(974, -260)
+speed = 100
 
 [node name="Rubble" parent="." instance=ExtResource("4_58fva")]
 z_index = -98

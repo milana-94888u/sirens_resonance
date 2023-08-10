@@ -2,6 +2,13 @@ extends CharacterBody2D
 class_name Player
 
 
+@export var captions = [
+	"The severe earthquake occured",
+	"I need to rescue people",
+	"Going to clear the rubbles and notify people with sirens",
+]
+
+
 @export var speed := 80
 @export var health := 1
 
@@ -81,3 +88,12 @@ func remove_active_object(obj: InteractiveObject) -> void:
 		current_interact_object.set_active(false)
 		current_interact_object = null
 	get_tree().call_group("interactive", "check_for_player", self)
+
+
+func _on_timer_timeout() -> void:
+	if captions:
+		$CanvasLayer/CaptionsLabel.visible = true
+		$CanvasLayer/CaptionsLabel.text = captions.pop_front()
+	else:
+		$CanvasLayer/CaptionsLabel.visible = false
+		$Timer.stop()
