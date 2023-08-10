@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=23 format=3 uid="uid://kxfij6dpnu2e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ff0dt1gfbfjo" path="res://player/player.tscn" id="4_jt8bb"]
 [ext_resource type="PackedScene" uid="uid://bay45oka0lfct" path="res://npc/injured_person.tscn" id="8_1351i"]
 [ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="10_u2aa8"]
+[ext_resource type="AudioStream" uid="uid://b0c387whcm2tk" path="res://assets/earthquake.mp3" id="11_ruhjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_toljs"]
 texture = ExtResource("3_4okaf")
@@ -3456,9 +3457,11 @@ theme_override_font_sizes/font_size = 40
 text = "Play again"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 120.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ruhjx")
 
 [connection signal="injured_person_saved" from="Rubble" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="Rubble3" to="." method="_on_injured_person_saved"]

@@ -120,13 +120,16 @@ func _on_siren_played(siren: InteractiveObject) -> void:
 
 
 func _on_timer_timeout() -> void:
+	$CanvasLayer/AnimationPlayer.play("fade_out")
 	player_blocked = true
 	$Player.set_physics_process(false)
-	$CanvasLayer/AnimationPlayer.play("fade_full")
+	await $CanvasLayer/AnimationPlayer.animation_finished
+	$AudioStreamPlayer.play()
+	
 	$Player/AnimatedSprite2D.play("stay_down")
 	$Player/StepsPlayer.stop()
 	$Player.position = Vector2(974, -260)
-	await $CanvasLayer/AnimationPlayer.animation_finished
+	
 	if len(injured_people_camp_spots) == 0 and len(people_camp_spots) == 0:
 		$CanvasLayer/WinLabel.text = "There was the second tremor\nAll people are saved!"
 	elif len(injured_people_camp_spots) < 10 and len(people_camp_spots) < 10:
@@ -135,3 +138,6 @@ func _on_timer_timeout() -> void:
 		$CanvasLayer/WinLabel.text = "There was the second tremor\nYou failed to save anyone"
 	$CanvasLayer/WinLabel.visible = true
 	$CanvasLayer/ReplayButton.visible = true
+
+	await $AudioStreamPlayer.finished
+	$CanvasLayer/AnimationPlayer.play("fade_in")
