@@ -34,7 +34,7 @@ var injured_people_camp_spots: Array[Vector2i] = [
 
 func _process(_delta: float) -> void:
 	$CanvasLayer/VBoxContainer/SavedLabel.text = "Rescued people: %d/10" % (10 - len(injured_people_camp_spots))
-	$CanvasLayer/VBoxContainer/NotifiedLabel.text = "Nofified people: %d/10" % (10 - len(people_camp_spots))
+	$CanvasLayer/VBoxContainer/NotifiedLabel.text = "Notified people: %d/10" % (10 - len(people_camp_spots))
 	if len(injured_people_camp_spots) == 0 and len(people_camp_spots) == 0:
 		$Timer.stop()
 	var seconds := int($Timer.time_left)
