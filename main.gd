@@ -1,6 +1,9 @@
 extends Node2D
 
 
+var player_blocked := false
+
+
 var people_camp_spots: Array[Vector2i] = [
 	Vector2i(33, -10),
 	Vector2i(34, -10),
@@ -27,6 +30,18 @@ var injured_people_camp_spots: Array[Vector2i] = [
 	Vector2i(45, -8),
 	Vector2i(34, -5),
 ]
+
+
+func _process(_delta: float) -> void:
+	$CanvasLayer/VBoxContainer/SavedLabel.text = "Rescued people: %d/10" % (10 - len(injured_people_camp_spots))
+	$CanvasLayer/VBoxContainer/NotifiedLabel.text = "Nofified people: %d/10" % (10 - len(people_camp_spots))
+	if len(injured_people_camp_spots) == 0 and len(people_camp_spots) == 0:
+		$Timer.stop()
+	var seconds := int($Timer.time_left)
+	$CanvasLayer/VBoxContainer/TimeLabel.text = "Remaining time %d:%d%d" % [seconds / 60, (seconds % 60) / 10, seconds % 10]
+	if len(injured_people_camp_spots) == 0 and len(people_camp_spots) == 0:
+		set_process(false)
+		$Timer.timeout.emit()
 
 
 func _on_injured_person_saved(person: InteractiveObject) -> void:
@@ -70,7 +85,8 @@ func add_people_from_buildings(
 		$TileMap.set_cell(5, appear_spots[i])
 	$CanvasLayer/AnimationPlayer.play("fade_in")
 	await $CanvasLayer/AnimationPlayer.animation_finished
-	$Player.set_physics_process(true)
+	if not player_blocked:
+		$Player.set_physics_process(true)
 	for i in len(appear_spots):
 		$TileMap.set_cell(5, final_spots[i], 4, npc_types[i])
 
@@ -101,3 +117,13 @@ func _on_siren_played(siren: InteractiveObject) -> void:
 			if check_building_neighbour(Vector2i(x, y)):
 				valid_appear_spots.append(Vector2i(x, y))
 	try_add_people_from_buildings(valid_appear_spots)
+
+
+func _on_timer_timeout() -> void:
+	player_blocked = true
+	$Player.set_physics_process(false)
+	$CanvasLayer/AnimationPlayer.play("fade_full")
+	$Player/AnimatedSprite2D.play("stay_down")
+	$Player/StepsPlayer.stop()
+	$Player.position = Vector2(974, -260)
+	await $CanvasLayer/AnimationPlayer.animation_finished

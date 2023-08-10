@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://ff0dt1gfbfjo"]
+[gd_scene load_steps=19 format=3 uid="uid://ff0dt1gfbfjo"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_82t4u"]
 [ext_resource type="Texture2D" uid="uid://pjj2doemt7dx" path="res://assets/hero.png" id="2_oclvf"]
 [ext_resource type="AudioStream" uid="uid://buc15dfwstuoa" path="res://assets/steps.wav" id="3_781rm"]
-[ext_resource type="Shader" path="res://text_outline.gdshader" id="4_emrck"]
+[ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="4_ex233"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkr5w"]
 atlas = ExtResource("2_oclvf")
@@ -136,16 +136,6 @@ animations = [{
 radius = 7.0
 height = 18.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbq6x"]
-resource_local_to_scene = true
-shader = ExtResource("4_emrck")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-shader_parameter/enabled = true
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_82t4u")
 
@@ -176,7 +166,7 @@ autostart = true
 
 [node name="CaptionsLabel" type="Label" parent="CanvasLayer"]
 texture_filter = 1
-material = SubResource("ShaderMaterial_bbq6x")
+material = ExtResource("4_ex233")
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

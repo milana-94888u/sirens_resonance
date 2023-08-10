@@ -3,7 +3,7 @@ class_name Player
 
 
 @export var captions = [
-	"The severe earthquake occured",
+	"The massive earthquake occured",
 	"I need to rescue people",
 	"Going to clear the rubbles and notify people with sirens",
 ]
@@ -41,7 +41,6 @@ func move() -> void:
 
 
 func stay() -> void:
-	# print(get_tree().get_nodes_in_group("interactive"))
 	if $StepsPlayer.playing:
 		$StepsPlayer.stop()
 	match $AnimatedSprite2D.animation:

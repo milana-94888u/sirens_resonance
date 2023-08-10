@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://kxfij6dpnu2e"]
+[gd_scene load_steps=22 format=3 uid="uid://kxfij6dpnu2e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_l2lgw"]
 [ext_resource type="Texture2D" uid="uid://c5pmrmte5dfrx" path="res://assets/skyscraper.png" id="2_jt5av"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ylh7flu7ji52" path="res://assets/tileset camp.png" id="4_am7rf"]
 [ext_resource type="PackedScene" uid="uid://ff0dt1gfbfjo" path="res://player/player.tscn" id="4_jt8bb"]
 [ext_resource type="PackedScene" uid="uid://bay45oka0lfct" path="res://npc/injured_person.tscn" id="8_1351i"]
+[ext_resource type="Material" uid="uid://bmsyd3vp3meu5" path="res://text_outline_material.tres" id="10_u2aa8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_toljs"]
 texture = ExtResource("3_4okaf")
@@ -3397,6 +3398,33 @@ libraries = {
 "": SubResource("AnimationLibrary_xext4")
 }
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 123.0
+offset_bottom = 71.0
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+texture_filter = 1
+material = ExtResource("10_u2aa8")
+layout_mode = 2
+text = "Remaining time 0:00"
+
+[node name="SavedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+texture_filter = 1
+material = ExtResource("10_u2aa8")
+layout_mode = 2
+text = "Rescued people: 0/10"
+
+[node name="NotifiedLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+texture_filter = 1
+material = ExtResource("10_u2aa8")
+layout_mode = 2
+text = "Notified people: 0/10"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
 [connection signal="injured_person_saved" from="Rubble" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="Rubble3" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="Rubble4" to="." method="_on_injured_person_saved"]
@@ -3410,3 +3438,4 @@ libraries = {
 [connection signal="injured_person_saved" from="InjuredPerson2" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="InjuredPerson3" to="." method="_on_injured_person_saved"]
 [connection signal="injured_person_saved" from="InjuredPerson4" to="." method="_on_injured_person_saved"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
