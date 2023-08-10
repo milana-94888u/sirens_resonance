@@ -21,12 +21,12 @@ func interact() -> void:
 
 
 func stop_interacting() -> void:
+	interactable = false
 	if $InteractLabel:
 		$InteractLabel.visible = false
 	for body in get_overlapping_bodies():
 		if body is Player:
 			body.remove_active_object(self)
-	interactable = false
 
 
 func start_interacting() -> void:
