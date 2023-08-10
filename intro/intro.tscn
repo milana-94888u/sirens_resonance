@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b0c387whcm2tk" path="res://assets/earthquake.mp3" id="8_ts5ku"]
 [ext_resource type="Texture2D" uid="uid://csqmiaol3fnfy" path="res://assets/intro_items/item3.png" id="9_4p22g"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tve80"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5hwa"]
 resource_local_to_scene = true
 shader = ExtResource("4_8rat5")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -23,7 +23,7 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 shader_parameter/enabled = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ho5h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yicmq"]
 resource_local_to_scene = true
 shader = ExtResource("4_8rat5")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -53,7 +53,7 @@ grow_vertical = 2
 texture = ExtResource("1_4qp7x")
 
 [node name="AudioDevice" parent="." instance=ExtResource("3_g8hax")]
-material = SubResource("ShaderMaterial_tve80")
+material = SubResource("ShaderMaterial_f5hwa")
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -68,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Backpack" parent="." instance=ExtResource("5_xcqf5")]
-material = SubResource("ShaderMaterial_5ho5h")
+material = SubResource("ShaderMaterial_yicmq")
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
