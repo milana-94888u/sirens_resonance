@@ -151,6 +151,7 @@ offset_bottom = -35.0
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" index="0"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5

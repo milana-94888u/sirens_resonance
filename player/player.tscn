@@ -160,6 +160,7 @@ stream = ExtResource("3_781rm")
 volume_db = -20.0
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
